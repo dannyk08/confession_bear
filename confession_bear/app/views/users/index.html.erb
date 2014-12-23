@@ -1,8 +1,8 @@
-<h1>Today's confessions</h1>
+<h1>Today's confessors</h1>
 
 <ul>
 	<% @users.each do |u| %>
-	<li><%= u.username %> <%= u.confessions %> <%= link_to "View Profile", user_path(u) %> </li>
+	<li><%= u.username %> | <%= u.story_num %> | <%= link_to "View Profile", user_path(u) %> </li>
 	<% end %>
 
 </ul>

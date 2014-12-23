@@ -1,1 +1,9 @@
-update.html.erb
+<h1>Edit Profile</h1>
+
+	<%= form_for @user do |user| %>
+	Username: <%= user.text_field :username %>
+	<%= user.submit "Submit Changes" %>
+
+	<% end %>
+
+	<%= link_to "Back", users_path %>

@@ -1,4 +1,4 @@
-class ConfessionsController< ApplicationController
+class ConfessionsController < ApplicationController
 	def index
 		@confessions = Confession.all
 	end
@@ -18,28 +18,29 @@ class ConfessionsController< ApplicationController
 		else
 			render "new"
 		end
+	end
 
-		def edit
-			@confession = Confession.find(params[:id])
-		end
+	def edit
+		@confession = Confession.find(params[:id])
+	end
 
-		def update
-			@confession = Confession.find(params[:id])
-			if @confession.update_attributes(confession_params)
-				redirect_to confessions_path
-			else
-				render "edit"
-			end
-		end
-
-		def destroy
-			@confession = Confession.find(params[:id])
-			@confession.destroy
+	def update
+		@confession = Confession.find(params[:id])
+		if @confession.update_attributes(confession_params)
 			redirect_to confessions_path
+		else
+			render "edit"
 		end
+	end
 
-		private
-		def confession_params
-			params.require(:confession).permit(:confessions)
-		end
+	def destroy
+		@confession = Confession.find(params[:id])
+		@confession.destroy
+		redirect_to confessions_path
+	end
+
+	private
+	def confession_params
+		params.require(:confession).permit(:story)
+	end
 end

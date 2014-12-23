@@ -10,14 +10,15 @@ users = User.create(
 	[
 		{
 			username: "dromero08",
-			confessions: 10
+			story_num: 10
 			},
 		{
 			username: "kinky08",
-			confessions: 20
+			story_num: 20
 			},
-		{username: "confession_bear",
-			confessions: 50
+		{
+			username: "confession_bear",
+			story_num: 50
 		}
 	]
 )

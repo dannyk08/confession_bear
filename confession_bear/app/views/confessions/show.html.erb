@@ -1,0 +1,8 @@
+<h1>Confessions</h1>
+
+<%= @confession.story %>
+
+<%= link_to "Edit confession", edit_confession_path %>
+<%= link_to "Delete Confession", :confession, method: :delete, data: {confirm: "Are you sure you want to delete it?"} %>
+
+<%= link_to "Back", confessions_path %>

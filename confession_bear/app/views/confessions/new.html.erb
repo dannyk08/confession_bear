@@ -1,0 +1,7 @@
+<h1>Make a new confession </h1>
+
+<%= form_for @confession do |c| %>
+<%= c.text_field :story %>
+<%= c.submit "Submit" %>
+<% end %>
+<%= link_to "Back", confessions_path %>
