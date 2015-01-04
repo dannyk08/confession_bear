@@ -1,8 +1,0 @@
-<h1>Make a new Profile</h1>
-
-<%= form_for @user do |u| %>
-	username: <%= u.text_field :username %>
-	<%= u.submit "Submit" %>
-	<% end %>
-<%= link_to "Back", users_path %>
-

@@ -1,9 +1,0 @@
-<h1>Today's confessions</h1>
-
-<ul>
-	<% @confessions.each do |c| %>
-	<li>
-		<% c.story %> <% link_to "View Confession", confessions_path(c) %>
-	</li>
-	<% end %>
-</ul>

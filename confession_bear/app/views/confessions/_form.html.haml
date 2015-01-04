@@ -1,0 +1,19 @@
+= form_for(@confession) do |c|
+  - if @confession.errors.any?
+    #error_explanation
+      %h2
+      = pluralize(@confession.errors.count, "error")
+      prohibited this confession from being saved:
+  /     %ul
+  /     - @confessions.errors.full_messages.each do |message|
+  /         %li= message
+  .field
+    = c.label :title 
+    %br/
+    = c.text_field :title
+  .field
+    = c.label :story
+    %br/
+    = c.text_field :story
+  .actions
+    = c.submit "Submit Change"

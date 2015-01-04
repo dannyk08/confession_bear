@@ -1,24 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = User.create(
+confessions = Confession.create(
 	[
-		{
-			username: "dromero08",
-			story_num: 10
-			},
-		{
-			username: "kinky08",
-			story_num: 20
-			},
-		{
-			username: "confession_bear",
-			story_num: 50
-		}
+		{title: "My boyfriend's nice", story: "I farted in front of my boyfriend and he inhaled all of it"},
+		{title: "My moms new shampoo", story: "Going to grocery shopping with my mom turned out great, she thinks I'm still a virgin" }
 	]
 )

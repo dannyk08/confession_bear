@@ -1,6 +1,6 @@
 class Confession
-	include Mongoid::Document
-	field :story, type: String
-
-	belongs_to :user
+  include Mongoid::Document
+  field :title, type: String
+  field :story, type: String
+  field :date_created, type: Date
 end
