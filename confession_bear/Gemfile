@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 # neccessary app gems
 gem 'haml', '~> 4.0.5'
 
+group :production, :staging do
+	gem "pg"
+  gem 'rails_12factor'
+end
+
 group :development do 
 	gem 'hpricot'
 	gem 'ruby_parser'
