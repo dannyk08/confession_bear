@@ -1,0 +1,19 @@
+= form_for(@user) do |u|
+  - if @user.errors.any?
+    / #error_explanation
+    /   %h2 
+    /   = pluralize(@user.errors.count, "error") prohibited this user from being saved:
+  .field
+    = u.label :username
+    %br/
+    = u.text_field :username
+  .field
+    = u.label :email
+    %br/
+    = u.text_field :email
+  .field
+    = u.label :password
+    %br/
+    = u.text_field :password
+  .actions
+    = u.submit "Submit"

@@ -1,5 +1,4 @@
 class ConfessionsController < ApplicationController
-
 	def index
 		@confessions = Confession.all 
 	end
@@ -41,9 +40,11 @@ class ConfessionsController < ApplicationController
 	end
 
 	private
+
 	def find_params
 		@confession = Confession.find(params[:id])
 	end
+
 	def confession_params
 		params.require(:confession).permit(:title, :story)
 	end
