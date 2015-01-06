@@ -1,2 +1,4 @@
 %h1= @user.username
+%div
+	= image_tag @user.image.url(:thumb) if @user.image.url.present?
 = link_to "Edit Profile", edit_user_path

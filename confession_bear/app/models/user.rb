@@ -16,13 +16,14 @@ class User
   validates :email, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: {within: 4..12}
   
-
-
+  mount_uploader :image, AvatarUploader
+  
+  has_many :confessions
   # users.password_hash in the database is a :string
   include BCrypt
 
   # def password
-  #   @password ||= Password.new(password_hash)
+  #   @password ||= Password.create(password_hash)
   # end
 
   # def password=(new_password)
