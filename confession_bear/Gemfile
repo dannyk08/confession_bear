@@ -2,10 +2,14 @@ source 'https://rubygems.org'
 
 # neccessary app gems
 gem 'haml', '~> 4.0.5'
+gem 'bcrypt', '~> 3.1.7'
+gem 'devise', '~> 3.4.1'
+gem 'rails-footnotes', '~> 4.1.4'
 
 group :production, :staging do
 	gem "pg"
   gem 'rails_12factor'
+  # gem 'thin'
 end
 
 group :development do 

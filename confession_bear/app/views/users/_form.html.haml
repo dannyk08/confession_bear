@@ -1,8 +1,11 @@
 = form_for(@user) do |u|
   - if @user.errors.any?
-    / #error_explanation
-    /   %h2 
-    /   = pluralize(@user.errors.count, "error") prohibited this user from being saved:
+    .error_messages
+      %h2 Form is invalid
+      %ul
+        - @user.errors.full_messages.each do |message| 
+          %li= message
+        / - pluralize(@user.errors.count, "error") prohibited this user from being saved:
   .field
     = u.label :username
     %br/
@@ -15,5 +18,9 @@
     = u.label :password
     %br/
     = u.text_field :password
+  .field
+    = u.label "Confirm password"
+    %br/
+    = u.text_field :password_confirmation
   .actions
     = u.submit "Submit"
