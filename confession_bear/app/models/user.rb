@@ -3,9 +3,9 @@ require 'bcrypt'
 class User
   include Mongoid::Document
 
-  has_secure_password
+  # has_secure_password
 
-  attr_accessible :email, :password, :password_confirmation, :username
+  # attr_accessible :email, :password, :password_confirmation, :username
 
   field :username, type: String
   field :email, type: String
@@ -21,12 +21,12 @@ class User
   # users.password_hash in the database is a :string
   include BCrypt
 
-  def password
-    @password ||= Password.new(password_hash)
-  end
+  # def password
+  #   @password ||= Password.new(password_hash)
+  # end
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
-  end
+  # def password=(new_password)
+  #   @password = Password.create(new_password)
+  #   self.password_hash = @password
+  # end
 end
