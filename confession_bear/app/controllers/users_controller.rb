@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_filter :authorized?, only: [:edit, :show, :update, :destroy]
+
 	def index
 	end
 
@@ -34,7 +36,9 @@ class UsersController < ApplicationController
 
 	def destroy
 		find_params
-			@user.destroy
+			if logged_in?
+				@user.destroy
+			end
 		redirect_to root_url
 	end
 
@@ -45,6 +49,6 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit(:email, :username, :image, :password)
+		params.require(:user).permit(:email, :username, :image, :password, confessions_attributes: [:title, :story])
 	end
 end

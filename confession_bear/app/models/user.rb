@@ -23,7 +23,7 @@ class User
     end
   end
   
-  validates :username, presence: true, uniqueness: true,        length: {within: 2..20}
+  validates :username, presence: true, uniqueness: true,        case_sensitive: false, length: {within: 2..20}
   validates :email,    presence: true, uniqueness: true,        case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: {within: 4..12}, confirmation: true
   

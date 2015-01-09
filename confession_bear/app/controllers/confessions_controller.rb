@@ -1,5 +1,6 @@
 class ConfessionsController < ApplicationController
-	
+	before_filter :authorized?
+	after_filter	:logged_in?
 	def index
 		@confessions = Confession.all 
 	end

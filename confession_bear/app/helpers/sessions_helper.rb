@@ -9,4 +9,10 @@ module SessionsHelper
 		session[:user_id] != nil
 	end
 	
+	def authorized?
+    if current_user === nil
+      redirect_to signup_path
+    end
+  end
+	
 end
