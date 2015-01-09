@@ -7,5 +7,6 @@
 		= f.submit "Upload Image"
 %div 
 	%div= render 'form'
+-#%h4= @user.delete "Delete Account", method: :delete, alert: "Are you sure?"
 
 = link_to "Back", user_path

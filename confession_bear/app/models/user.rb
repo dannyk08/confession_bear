@@ -1,33 +1,34 @@
-require 'bcrypt'
-
 class User
   include Mongoid::Document
+  include ActiveModel::Validations
 
-  # has_secure_password
+  field :username,      type: String
+  field :email,         type: String
+  field :password_hash, type: String
 
-  # attr_accessible :email, :password, :password_confirmation, :username
+  attr_reader :password
+  def password=(unencrypted_password)
+    unless unencrypted_password.empty?
+      @password = unencrypted_password
+      # users.password_hash in the database is a :string
+      self.password_hash = BCrypt::Password.create(unencrypted_password)  
+    end
+  end
 
-  field :username, type: String
-  field :email, type: String
-  field :password, type: String
-  field :password_confirmation, type: String
+  def authenticate(unencrypted_password)
+    if BCrypt::Password.new(self.password_hash) == unencrypted_password
+      return self
+    else
+      return false
+    end
+  end
   
-  validates :username, presence: true, uniqueness: true, length: {within: 3..30}
-  validates :email, presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, presence: true, length: {within: 4..12}
+  validates :username, presence: true, uniqueness: true,        length: {within: 2..20}
+  validates :email,    presence: true, uniqueness: true,        case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :password, presence: true, length: {within: 4..12}, confirmation: true
   
   mount_uploader :image, AvatarUploader
   
   has_many :confessions
-  # users.password_hash in the database is a :string
-  include BCrypt
-
-  # def password
-  #   @password ||= Password.create(password_hash)
-  # end
-
-  # def password=(new_password)
-  #   @password = Password.create(new_password)
-  #   self.password_hash = @password
-  # end
+  
 end

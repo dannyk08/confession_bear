@@ -1,4 +1,4 @@
-%h1= @user.username
+%h3= current_user.username
+= link_to "Home", root_url
 %div
-	= image_tag @user.image.url(:thumb) if @user.image.url.present?
-= link_to "Edit Profile", edit_user_path
+	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?

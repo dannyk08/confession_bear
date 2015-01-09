@@ -1,11 +1,7 @@
-= form_for(@user) do |u|
-  - if @user.errors.any?
-    .error_messages
-      %h2 Form is invalid
-      %ul
-        - @user.errors.full_messages.each do |message| 
-          %li= message
-        / - pluralize(@user.errors.count, "error") prohibited this user from being saved:
+%ul
+  - @user.errors.full_messages.each do |e|
+    %li= e
+= form_for @user do |u|
   .field
     = u.label :username
     %br/
