@@ -16,7 +16,8 @@
 					= link_to "Edit Profile", edit_profile_path(current_user.id)
 					= link_to "Log out", 			logout_path, method: :delete
 				-else
-					%p= link_to "Home", 		root_url
-					%p= link_to "Log In",		login_path
-					%p= link_to "Register", signup_path
+					%p
+					= link_to "Home", 		root_url
+					= link_to "Log In",		login_path
+					= link_to "Register", signup_path
 	= yield

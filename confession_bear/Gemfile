@@ -25,7 +25,7 @@ group :development do
 	gem 'ruby_parser'
 	gem 'mongoid', '~> 4.0.0'
 	gem 'better_errors', '~> 2.0.0'
-	gem 'rails-footnotes', '~> 4.1.4'
+	# gem 'rails-footnotes', '~> 4.1.4'
 end
 ################## Rails Defaults ##################
 gem 'rails', '4.1.8'

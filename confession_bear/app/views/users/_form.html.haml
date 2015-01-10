@@ -1,22 +1,48 @@
-%ul
-  - @user.errors.full_messages.each do |e|
-    %li= e
-= form_for @user do |u|
-  .field
-    = u.label :username
-    %br/
-    = u.text_field :username
-  .field
-    = u.label :email
-    %br/
-    = u.text_field :email
-  .field
-    = u.label :password
-    %br/
-    = u.password_field :password
-  .field
-    = u.label "Confirm password"
-    %br/
-    = u.password_field :password_confirmation
-  .actions
-    = u.submit "Submit"
+- if current_user === nil # will prevent logged in users from seeing this
+  %h1 Create new account
+  %ul
+    - @user.errors.full_messages.each do |e|
+      %li= e
+  = form_for @user do |u|
+    .field
+      = u.label :username
+      %br/
+      = u.text_field :username
+    .field
+      = u.label :email
+      %br/
+      = u.text_field :email
+    .field
+      = u.label :password
+      %br/
+      = u.password_field :password
+    .field
+      = u.label "Confirm password"
+      %br/
+      = u.password_field :password_confirmation
+    .actions
+      = u.submit "Submit"
+- if logged_in?
+  %h1 Edit account
+  %ul
+    - current_user.errors.full_messages.each do |e|
+      %li= e
+  = form_for current_user do |u|
+    .field
+      = u.label :username
+      %br/
+      = u.text_field :username
+    .field
+      = u.label :email
+      %br/
+      = u.text_field :email
+    .field
+      = u.label :password
+      %br/
+      = u.password_field :password
+    .field
+      = u.label "Confirm password"
+      %br/
+      = u.password_field :password_confirmation
+    .actions
+      = u.submit "Submit"

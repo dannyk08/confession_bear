@@ -1,16 +1,26 @@
-%h3= current_user.username
-= link_to "Home", root_url
 %div
 	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
 %ul 
 	- current_user.confessions.each do |myc|
 		%li
 			%strong= myc.title
-			\ #{ myc.story}
+			%br
+			= myc.story
+			%br
+			= link_to "Edit", edit_confession_path(myc)
+			-# - if confession.story.length <= 20
+			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
+		%div
+			= link_to "See Comments", confession_path(myc)
+
 = link_to "Confess", new_confession_path
+
+= link_to "Confeesion", 
 
 %ul
 	- if @confessions.each != current_user.confessions
 		- @confessions.each do |confession|
 			%li
 				%strong= confession.title
+				%br
+				= confession.story

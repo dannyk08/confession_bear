@@ -8,4 +8,5 @@ class Confession
   validates :story, presence: true, length: { minimum: 10, maximum: 300 }
 
   belongs_to :user
+  embeds_many :comments
 end

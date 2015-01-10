@@ -1,7 +1,7 @@
 module SessionsHelper
 	def current_user
 		if session[:user_id]
-			@current_user ||= User.find(session[:user_id]) if session[:user_id]
+			@current_user ||= User.find(session[:user_id])
 		end
 	end
 
@@ -10,7 +10,7 @@ module SessionsHelper
 	end
 	
 	def authorized?
-    if current_user === nil
+    unless (current_user != nil) && (current_user != session[:user_id])
       redirect_to signup_path
     end
   end

@@ -28,9 +28,10 @@ class User
   validates :password, presence: true, length: {within: 4..12}, confirmation: true, on: :create #if: :password, :unless => password_digest.present?
     
   
-  
+  # carrierwave stuff
   mount_uploader :image, AvatarUploader
   
   has_many :confessions
+  has_many :comments
   
 end

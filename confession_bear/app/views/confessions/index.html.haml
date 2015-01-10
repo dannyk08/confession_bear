@@ -1,15 +1,12 @@
-%h1 Confessions
-%ul
-  - @confessions.each do |c|
-    %li
-      %strong= c.title
-      \ #{c.story}
-      = link_to "Edit", edit_confession_path(c)
-      = link_to "Delete", c, method: :delete, data: {confirm: "Are you sure?"}
-
-= link_to "New confession", new_confession_path
-%h2 Other User's confessions
+%h1 Confessions Index Page
+-# %h1 New Confession
+-# =render 'form'
+-# =link_to "Back", confessions_path
+//inconssitent indentation error? why??????
 -# %ul
--# 	- @confessions.each do |confession|
--# 		%li
--# 			%strong= confession.title
+-# 	- if @confessions.each != current_user.confessions
+-# 		- @confessions.each do |confession|
+-# 			%li
+-# 				%strong= confession.title
+-# 				%br
+-# 				= confession.story

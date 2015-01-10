@@ -1,5 +1,5 @@
 module ConfessionsHelper
-	def all_confessions
-		@confessions = Confessions.all
-	end
+	# def my_confession?
+	# 	current_user != @user.confession.id
+	# end
 end

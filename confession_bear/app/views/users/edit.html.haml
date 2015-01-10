@@ -1,12 +1,12 @@
 %h1 Edit Profile
 #user-form
-	= image_tag @user.image.url(:thumb) if @user.image.url.present?
+	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
 	%h4 Upload Image
-	= form_for(@user, :html => {:multipart => true}) do |f|
+	= form_for(current_user, :html => {:multipart => true}) do |f|
 		= f.file_field :image
 		= f.submit "Upload Image"
 %div 
 	%div= render 'form'
--#%h4= @user.delete "Delete Account", method: :delete, alert: "Are you sure?"
+%h4= link_to "Delete Account", current_user, method: :delete, alert: "Are you sure you want to delete your account?"
 
 = link_to "Back", user_path

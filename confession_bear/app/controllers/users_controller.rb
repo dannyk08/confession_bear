@@ -19,17 +19,20 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find(params[:id])
+			if session[:user_id] === current_user
+				@user = User.find(params[:id])
+			end
 	end
 
 	def show
 		@confessions = Confession.all
+		# @comments = Comments.all
 		
 	end
 
 	def update
 		@user = User.find(params[:id])
-		if @user.update(user_params)
+		if @user.update_attributes(user_params)
 			redirect_to root_path
 		else
 			render :edit
@@ -37,20 +40,20 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		find_params
-			if logged_in?
-				@user.destroy
-			end
+		find_user
+		current_user.destroy
+		# if we delete a user.. then a session must be deleted as well?
+		@session.delete(:user_id)
 		redirect_to root_url
 	end
 
 	private
 
-	def find_params
-		@user = User.find(params[:id])
+	def find_user
+		current_user = User.find(params[:id])
 	end
 
 	def user_params
-		params.require(:user).permit(:email, :username, :image, :password, confessions_attributes: [:title, :story])
+		params.require(:user).permit(:email, :username, :image, :password, confessions_attributes: [:title, :story], comments_attributes: :reply)
 	end
 end
