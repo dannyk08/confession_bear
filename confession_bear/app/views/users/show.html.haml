@@ -1,5 +1,6 @@
 %div
-	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
+	- if current_user.image.url.present?
+		= image_tag current_user.image.url(:thumb) 
 %ul 
 	- current_user.confessions.each do |myc|
 		%li

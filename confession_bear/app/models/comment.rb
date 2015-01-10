@@ -6,4 +6,5 @@ class Comment
 
   belongs_to :user
   embedded_in :confession
+  accepts_nested_attributes_for :user
 end

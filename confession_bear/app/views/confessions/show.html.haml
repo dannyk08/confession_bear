@@ -12,19 +12,19 @@
 			%p
 				= @confession.comment.reply
 				= @confession.comment.current_user.try(:username)
-%section
-	%h3 Add new comment
-	= form_for [@confession] do |f|
-		%div
-			= f.fields_for :user_attributes do |c|
-				%div
-					= c.label :username
-					= c.text_field :username
-				%div
-					= c.label :email
-					= c.text_field :email
-		%div
-			= f.label :reply, "Comment:"
-			= f.text_area :reply
-		= f.submit "Add comment"  
+-# %section
+-# 	%h3 Add new comment
+-# 	= form_for [@confession] do |f|
+-# 		%div
+-# 			= f.fields_for :user_attributes do |c|
+-# 				%div
+-# 					= c.label :username
+-# 					= c.text_field :username
+-# 				%div
+-# 					= c.label :email
+-# 					= c.text_field :email
+-# 		%div
+-# 			= f.label :reply, "Comment:"
+-# 			= f.text_area :reply
+-# 		= f.submit "Add comment"
 = link_to 'Back', confessions_path

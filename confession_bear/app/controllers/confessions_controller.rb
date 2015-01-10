@@ -39,7 +39,7 @@ class ConfessionsController < ApplicationController
 		if  @confession.story.length <= 30
 			flash.notice = "This confession can't be editted :/"
 		elsif @confession.update_attributes(confession_params)
-			redirect_to confessions_path
+			redirect_to profile_path
 		else
 			render :edit
 		end
