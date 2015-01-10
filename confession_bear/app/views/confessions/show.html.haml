@@ -2,27 +2,29 @@
 
 %strong= @confession.title
 %br
-= current_user.confession.story
+= @confession.story
 %br
 = link_to "Edit", edit_confession_path
-= link_to "Delete", confession, method: :delete, data: {confirm: "Are you sure?"}
+= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
+	%section
+		%h3 Comments
+		%div
+			%p
+				= @confession.comment.reply
+				= @confession.comment.current_user.try(:username)
 %section
-	%h3 Comments
-	%div
-		%p
-			= comment.reply
-			= comment.current_user.try(:username)
-%section
-	%h3 Add a Comment
-	= form_for [@confession, @comment] do |field|
-	%div
-		= field.fields_for :user_attributes do |a|
-			%div
-				= a.label :username
-				= a.text_field :username
-	%div
-		= field.label :reply, "Comment:"
-		= field.text_area :reply
-	= field.submit "Add Comment"
-  
+	%h3 Add new comment
+	= form_for [@confession] do |f|
+		%div
+			= f.fields_for :user_attributes do |c|
+				%div
+					= c.label :username
+					= c.text_field :username
+				%div
+					= c.label :email
+					= c.text_field :email
+		%div
+			= f.label :reply, "Comment:"
+			= f.text_area :reply
+		= f.submit "Add comment"  
 = link_to 'Back', confessions_path

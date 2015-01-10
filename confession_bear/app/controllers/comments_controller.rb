@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 	before_filter :authorized?
 	before_filter	:logged_in?
+	
 	def new
 		@comments = Comment.new
 	end

@@ -4,4 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	include ApplicationHelper
 
+	def authorized?
+    unless (current_user != nil) && (current_user != session[:user_id])
+      redirect_to root_url
+    end
+  end
 end

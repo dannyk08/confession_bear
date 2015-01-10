@@ -18,5 +18,4 @@ class SessionsController < ApplicationController
   	redirect_to root_url, notice: "Hope you feel better :)"
   end
 
-  
 end

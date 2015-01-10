@@ -6,7 +6,7 @@ class ConfessionsController < ApplicationController
 	end
 
 	def create
-		@confession = current_user.confessions.new(confession_params)
+		@confession = Confessions.new(confession_params)
 		# the top line does the same thing as the bottom ones
 			# @confession = Confession.new(confession_params)
 			# @confession.user = current_user 
@@ -36,9 +36,9 @@ class ConfessionsController < ApplicationController
 
 	def update
 		find_confession
-		if  current_user.confession.story.length <= 30
+		if  @confession.story.length <= 30
 			flash.notice = "This confession can't be editted :/"
-		elsif current_user.confession.update_attributes(confession_params)
+		elsif @confession.update_attributes(confession_params)
 			redirect_to confessions_path
 		else
 			render :edit
@@ -58,12 +58,11 @@ class ConfessionsController < ApplicationController
 	private
 
 	def find_confession
-		if session[:user_id] === current_user
 			@confession = Confession.find(params[:id])
-		end
 	end
 
 	def confession_params
 		params.require(:confession).permit(:title, :story)
 	end
+
 end
