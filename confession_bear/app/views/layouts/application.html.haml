@@ -9,12 +9,12 @@
 		#container
 			#user_header
 				-if logged_in?
-					%p= current_user.username.capitalize
-
-					%p= link_to "Confessions",  confessions_path
-					%p= link_to "Profile", 			profile_path
-					%p= link_to "Edit Profile", edit_profile_path(current_user.id)
-					%p= link_to "Log out", 			logout_path, method: :delete
+					%p
+					= current_user.username.capitalize
+					= link_to "Confessions",  confessions_path
+					= link_to "Profile", 			profile_path
+					= link_to "Edit Profile", edit_profile_path(current_user.id)
+					= link_to "Log out", 			logout_path, method: :delete
 				-else
 					%p= link_to "Home", 		root_url
 					%p= link_to "Log In",		login_path

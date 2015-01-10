@@ -23,6 +23,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@confessions = Confession.all
+		
 	end
 
 	def update

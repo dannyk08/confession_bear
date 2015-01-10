@@ -25,7 +25,9 @@ class User
   
   validates :username, presence: true, uniqueness: true,        case_sensitive: false, length: {within: 2..20}
   validates :email,    presence: true, uniqueness: true,        case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, presence: true, length: {within: 4..12}, confirmation: true
+  validates :password, presence: true, length: {within: 4..12}, confirmation: true, on: :create #if: :password, :unless => password_digest.present?
+    
+  
   
   mount_uploader :image, AvatarUploader
   

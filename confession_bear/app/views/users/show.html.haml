@@ -2,3 +2,15 @@
 = link_to "Home", root_url
 %div
 	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
+%ul 
+	- current_user.confessions.each do |myc|
+		%li
+			%strong= myc.title
+			\ #{ myc.story}
+= link_to "Confess", new_confession_path
+
+%ul
+	- if @confessions.each != current_user.confessions
+		- @confessions.each do |confession|
+			%li
+				%strong= confession.title

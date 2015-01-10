@@ -6,7 +6,10 @@ class ConfessionsController < ApplicationController
 	end
 
 	def create
-		@confession = Confession.new(confession_params)
+		# @confession = current_user.confessions.new(confession_params)
+		# the top line does the same thing as the bottom ones
+			@confession = Confession.new(confession_params)
+			@confession.user = current_user 
 		 if @confession.save
 		 		redirect_to confessions_path
 		 	else
@@ -20,6 +23,10 @@ class ConfessionsController < ApplicationController
 
 	def edit
 		find_params
+		# I'm trying to prevent a user fro updating a confession down to <=30 to be able to delete it
+		# if  @confession.story.length <= 30
+		# 	flash.notice = "This confession can't be editted :/"
+		# end
 	end
 
 	def show
@@ -28,7 +35,9 @@ class ConfessionsController < ApplicationController
 
 	def update
 		find_params
-		if @confession.update_attributes(confession_params)
+		if  @confession.story.length <= 30
+			flash.notice = "This confession can't be editted :/"
+		elsif @confession.update_attributes(confession_params)
 			redirect_to confessions_path
 		else
 			render :edit
@@ -37,7 +46,11 @@ class ConfessionsController < ApplicationController
 
 	def destroy
 		find_params
-			@confession.destroy
+			if @confession.story.length <= 30
+				@confession.destroy
+			else
+				flash.notice = "This confession can't be deleted"
+			end
 		redirect_to confessions_path
 	end
 
