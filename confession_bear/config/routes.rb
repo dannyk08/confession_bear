@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get '/edit_profile/:id', to: 'users#edit',  as: 'edit_profile'
   get '/signup',           to: 'users#new',   as: 'signup'
   get '/profile',          to: 'users#show',  as: 'profile'
+  delete 'user/:id' => 'users#destroy'
 
 end
