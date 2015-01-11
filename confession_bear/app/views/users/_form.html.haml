@@ -23,7 +23,7 @@
     .actions
       = u.submit "Submit"
 - if logged_in?
-  %h1 Edit account
+  %h3 Edit username
   %ul
     - current_user.errors.full_messages.each do |e|
       %li= e
@@ -32,16 +32,31 @@
       = u.label :username
       %br/
       = u.text_field :username
+    = u.submit "Submit"
+  %h3 Update email
+  %ul
+    -# current_user.errors.full_messages.each do |e|
+      -#%li= e
+  = form_for current_user do |u|
     .field
       = u.label :email
       %br/
       = u.text_field :email
+    = u.submit "Submit"
+  %h3 Update Password
+  %ul
+    -# current_user.errors.full_messages.each do |e|
+      -#%li= e
+  = form_for current_user do |u|
+    .field
+      = u.label "Current Password"
+      = u.password_field_tag :current_password, params[:current_password], 
     .field
       = u.label :password
       %br/
       = u.password_field :password
     .field
-      = u.label "Confirm password"
+      = u.label :password_confirmation
       %br/
       = u.password_field :password_confirmation
     .actions

@@ -1,5 +1,7 @@
 %h1 Edit Confession
-
-= render 'form'
+- unless @confession.story.length >= 20
+	= render 'form'
+- else
+	= params[:notice] = "+20 characters disables a confession's editing abilities"
 
 = link_to "Back", confession_path 

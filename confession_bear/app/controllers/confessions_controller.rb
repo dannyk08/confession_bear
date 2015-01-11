@@ -23,10 +23,6 @@ class ConfessionsController < ApplicationController
 
 	def edit
 		find_confession
-		# I'm trying to restrict a user from updating a confession down to <=30 characters to be able to delete it
-		# if  @confession.story.length <= 30
-		# 	flash.notice = "This confession can't be editted :/"
-		# end
 	end
 
 	def show
@@ -34,11 +30,12 @@ class ConfessionsController < ApplicationController
 		@comments = Comment.new
 	end
 
+	# I gotta fix this code so users can't edit stuff after 30 characters
 	def update
-		find_confession
-		if  @confession.story.length <= 30
-			flash.notice = "This confession can't be editted :/"
-		elsif @confession.update_attributes(confession_params)
+		# unless current_user.confession.story.length < 20
+			find_confession
+			# flash.notice = "This confession can't be editted :/"
+		if @confession.update_attributes(confession_params)
 			redirect_to profile_path
 		else
 			render :edit
@@ -47,7 +44,7 @@ class ConfessionsController < ApplicationController
 
 	def destroy
 		find_confession
-			if @confession.story.length <= 30
+			if @confession.story.length <= 20
 				@confession.destroy
 			else
 				flash.notice = "This confession can't be deleted"

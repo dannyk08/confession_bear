@@ -33,11 +33,14 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		if current_user.update_attributes(user_params)
-			redirect_to root_path
-		else
-			render :edit
-		end		
+  	user = User.find_by_email(current_user.email).try(:authenticate, params[:current_password])
+ 		if user && current_user.update_attributes(user_params)
+   	  flash[:success] = "Profile updated"
+    redirect_to root_path
+  	else
+	    flash.now[:error] = "Incorrect Current Password" unless user
+	    render :edit
+	  end
 	end
 
 	def destroy
