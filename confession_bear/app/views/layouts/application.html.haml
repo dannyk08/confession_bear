@@ -10,9 +10,9 @@
 			#user_header
 				-if logged_in?
 					%p
-					= current_user.username.capitalize
-					= link_to "Confessions",  confessions_path
+					%strong= current_user.username
 					= link_to "Profile", 			profile_path
+					= link_to "Confessions",  confessions_path
 					= link_to "Edit Profile", edit_profile_path(current_user.id)
 					= link_to "Log out", 			logout_path, method: :delete
 				-else

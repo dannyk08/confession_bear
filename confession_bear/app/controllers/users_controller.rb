@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			session[:user_id] = @user.id.to_s
-			redirect_to user_path(@user), notice: "You've Signed Up! You're Awesome!"
+			# params[:notice] = "You've Signed up!  TESSSSTTTT"
+			redirect_to profile_path(@user), notice: "You've Signed Up! You're Awesome!"
 		else
 			render :new
 		end
@@ -41,10 +42,10 @@ class UsersController < ApplicationController
 
 	def destroy
 		find_user
-		current_user.destroy
+		@current_user.destroy
 		# if we delete a user.. then a session must be deleted as well?
 		@session.delete(:user_id)
-		redirect_to root_url
+		redirect_to root_path
 	end
 
 	private

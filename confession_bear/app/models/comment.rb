@@ -4,7 +4,6 @@ class Comment
   
   field :reply, type: String
 
-  belongs_to :user
   embedded_in :confession
-  accepts_nested_attributes_for :user
+  # accepts_nested_attributes_for :user
 end

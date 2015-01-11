@@ -6,7 +6,7 @@ class ConfessionsController < ApplicationController
 	end
 
 	def create
-		@confession = Confessions.new(confession_params)
+		@confession = @current_user.confessions.new(confession_params)
 		# the top line does the same thing as the bottom ones
 			# @confession = Confession.new(confession_params)
 			# @confession.user = current_user 
@@ -62,7 +62,7 @@ class ConfessionsController < ApplicationController
 	end
 
 	def confession_params
-		params.require(:confession).permit(:title, :story)
+		params.require(:confession).permit(:title, :story, :reply)
 	end
 
 end
