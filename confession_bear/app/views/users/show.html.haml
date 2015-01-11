@@ -14,15 +14,3 @@
 		%div
 			= link_to "See Comments", confession_path(myc)
 
-= link_to "Confess", new_confession_path
-
--# = link_to "Confeesion", 
-
-%ul
-	- if @confessions.each != current_user.confessions
-		- @confessions.each do |confession|
-			%li
-				%strong= confession.title
-				%br
-				= confession.story
--# I need to add a link or box to comment on these confessions 
