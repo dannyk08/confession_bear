@@ -3,6 +3,7 @@ class ConfessionsController < ApplicationController
 	before_filter	:logged_in?
 	def index
 		@confessions = Confession.all.order("id DESC")
+		@confession = Confession.new
 	end
 
 	def create

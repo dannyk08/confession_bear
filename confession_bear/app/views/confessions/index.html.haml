@@ -1,7 +1,8 @@
 %h1 Confessions Index Page
-= link_to "Confess", new_confession_path
-
--# = link_to "Confeesion", 
+%div
+	= render 'form'
+	%p OR
+	%button= link_to "Confess", new_confession_path
 
 %ul
 	- if @confessions.each != current_user.confessions
