@@ -5,7 +5,7 @@ class Confession
   # field :date_created, type: Date
 
   validates :title, presence: true
-  validates :story, presence: true, length: { minimum: 10, maximum: 300 }
+  validates :story, presence: true, length: { minimum: 10}
 
   belongs_to :user
   embeds_many :comments

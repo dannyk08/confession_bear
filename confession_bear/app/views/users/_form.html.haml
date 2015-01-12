@@ -48,9 +48,9 @@
     -# current_user.errors.full_messages.each do |e|
       -#%li= e
   = form_for current_user do |u|
-    .field
-      = u.label "Current Password"
-      = u.password_field_tag :current_password, params[:current_password], 
+    -#.field
+      -#= u.label "Current Password"
+      -#= u.password_field_tag :current_password, params[:current_password] 
     .field
       = u.label :password
       %br/

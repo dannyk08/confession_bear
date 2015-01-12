@@ -1,7 +1,8 @@
 %h1 Edit Confession
-- unless @confession.story.length >= 20
-	= render 'form'
-- else
-	= params[:notice] = "+20 characters disables a confession's editing abilities"
+%div
+	- unless @confession.story.length >= 20
+		= render 'form'
+	- else
+		= params[:notice] = "+20 characters disables a confession's editing abilities. Now why would you delete your peace of mind?"
 
-= link_to "Back", confession_path 
+%button= link_to "Back", confession_path 

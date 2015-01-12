@@ -2,27 +2,21 @@ class CommentsController < ApplicationController
 	before_filter :authorized?
 	before_filter	:logged_in?
 	
+	def index
+		@comments = @confession.comments
+	end
 	def new
-		@comments = Comment.new
+		@comment = @confession.comment.new
 	end
 
 	def create
-		confession = Confession.find(params[:confession_id])
-		@comment = current_user.comment.new(comment_params)
+		@confession = Confession.find(params[:confession_id])
+		@comment = @confession.comment.new(comment_params)
 		if @confession.save
-			redirect_to confessions_path
+			params[:notice] = "Comment created!"
+			redirect_to confession_path(@confession)
 		else
 			render :new
-		end
-	end
-	def edit
-		
-	end
-	def update
-		if find_comment
-			comment_update_attributes(comment_params)
-		else
-			render :edit
 		end
 	end
 
@@ -35,12 +29,10 @@ class CommentsController < ApplicationController
 	private
 
 	def find_comment
-		if session[:user_id] === current_user
-			@comment = Comment.find(params[:id])
-		end
+		@comment = @confession.comment.find(params[:id])
 	end
 
 	def comment_params
-		@comment = require.(:comment).permit(:reply)
+		@comment = params.require(:comment).permit(:reply)
 	end
 end

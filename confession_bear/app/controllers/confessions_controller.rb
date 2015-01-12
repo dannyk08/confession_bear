@@ -2,7 +2,7 @@ class ConfessionsController < ApplicationController
 	before_filter :authorized?
 	before_filter	:logged_in?
 	def index
-		@confessions = Confession.all 
+		@confessions = Confession.all.order("id DESC")
 	end
 
 	def create
@@ -27,7 +27,8 @@ class ConfessionsController < ApplicationController
 
 	def show
 		find_confession
-		@comments = Comment.new
+		@comments = Comment.all
+		@comment = Comment.new
 	end
 
 	# I gotta fix this code so users can't edit stuff after 30 characters
@@ -47,9 +48,9 @@ class ConfessionsController < ApplicationController
 			if @confession.story.length <= 20
 				@confession.destroy
 			else
-				flash.notice = "This confession can't be deleted"
+				flash[:notice] = "This confession can't be deleted"
 			end
-		redirect_to confessions_path
+		redirect_to profile_path
 	end
 
 	private
@@ -59,7 +60,7 @@ class ConfessionsController < ApplicationController
 	end
 
 	def confession_params
-		params.require(:confession).permit(:title, :story, :reply)
+		params.require(:confession).permit(:title, :story, comment: :reply)
 	end
 
 end

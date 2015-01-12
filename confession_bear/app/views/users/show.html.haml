@@ -1,6 +1,6 @@
-%div
-	- if current_user.image.url.present?
-		= image_tag current_user.image.url(:thumb) 
+- if current_user.confessions.count === 0
+	%p You need to confess. The world depends on it!
+= render partial: 'confessions/form'
 %ul 
 	- current_user.confessions.each do |myc|
 		%li
@@ -13,4 +13,3 @@
 			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
 		%div
 			= link_to "See Comments", confession_path(myc)
-

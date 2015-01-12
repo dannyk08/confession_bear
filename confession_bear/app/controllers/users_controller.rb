@@ -27,18 +27,20 @@ class UsersController < ApplicationController
 
 	def show
 		@confessions = Confession.all
-		# @comments = Comments.all
+		@confession = Confession.new
+		# @comments = Confession.comment.all
+		# @comment = Confession.comment.new
 		
 	end
 
 	def update
-		@user = User.find(params[:id])
-  	user = User.find_by_email(current_user.email).try(:authenticate, params[:current_password])
- 		if user && current_user.update_attributes(user_params)
+		find_user
+  	# user = User.find_by_email(current_user.email).try(:authenticate, params[:current_password])
+ 		if current_user.update_attributes(user_params) # && user
    	  flash[:success] = "Profile updated"
     redirect_to root_path
   	else
-	    flash.now[:error] = "Incorrect Current Password" unless user
+	    # flash.now[:error] = "Incorrect Current Password" unless user
 	    render :edit
 	  end
 	end

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'users#index'
   # sets all routes
   resources :users
-  resources :confessions
+  resources :confessions do
+    resources :comments, only: [:new, :create, :destroy]
+  end
 
   # session routes
   get     '/login'  => 'sessions#new'

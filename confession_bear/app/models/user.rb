@@ -25,8 +25,8 @@ class User
   
   validates :username, presence: true, uniqueness: true,        case_sensitive: false, length: {within: 2..20}
   validates :email,    presence: true, uniqueness: true,        case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, on: :create, length: {within: 4..12}
-  validates :password_confirmation, presence: true, on: :update, unless: lambda{|user| @user.password.blank? } 
+  validates :password, on: :create, length: {within: 4..12}, presence: true, confirmation: true
+  # validates :password_confirmation, presence: true, on: :update, unless: lambda{|user| @user.password.blank? } 
     
   
   # carrierwave stuff

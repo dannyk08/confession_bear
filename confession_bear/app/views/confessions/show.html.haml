@@ -11,22 +11,15 @@
 	= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
 -# user can add a comment right on this text_area
 %section
-	%h3 Add new comment
-	= link_to 'Back', confessions_path
-	= form_for [@confession] do |f|
+	= form_for [@confession, Comment.new] do |f|
 		%div
-			= f.fields_for :user_attributes do |c|
-				%div
-					-# = c.label @user.username
-		-# %div
-		-# 	= f.label :reply, "Comment:"
-		-# 	= f.text_area :reply
-		-# = f.submit "Add comment"
+			%p= f.text_area :reply, size: "50x5"
+			%p= f.submit "Add Comment"
 -# Comments go below
-%section
-	%h3 Comments
-	%div
-		%p
-			-# = current_user.confession.comment.reply
-			-# = current_user.confession.comment.current_user.try(:username)
-
+- if @confession.comments.size > 0
+	%section
+		%h3 Comments
+		- for comments in @confession.comments
+			%h4= comment.header
+			%p= comment.reply
+= link_to 'Back', profile_path
