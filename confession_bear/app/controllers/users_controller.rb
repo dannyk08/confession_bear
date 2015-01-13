@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authorized?, only: [:edit, :show, :update, :destroy]
+	before_action :authorized?, only: [:edit, :show, :update, :destroy]
 
 	def index
 	end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@confessions = Confession.all
+		@confessions = Confession.all.order("date_confessed DESC")
 		@confession = Confession.new
 		# @comments = Confession.comment.all
 		# @comment = Confession.comment.new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   	# user = User.find_by_email(current_user.email).try(:authenticate, params[:current_password])
  		if current_user.update_attributes(user_params) # && user
    	  flash[:success] = "Profile updated"
-    redirect_to root_path
+    redirect_to profile_path
   	else
 	    # flash.now[:error] = "Incorrect Current Password" unless user
 	    render :edit
@@ -48,6 +48,8 @@ class UsersController < ApplicationController
 	def destroy
 		find_user
 		@user = current_user.destroy
+		# destroy all the user's comments in all the confessions
+		@comments = current_user.comments.destroy
 		# if we delete a user.. then a session must be deleted as well?
 		session.delete(:user_id)
 		redirect_to root_path

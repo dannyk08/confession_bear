@@ -1,3 +1,5 @@
+#user-form
+	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
 - if current_user.confessions.count === 0
 	%p You need to confess. The world depends on it!
 = render partial: 'confessions/form'
@@ -8,8 +10,13 @@
 			%br
 			= myc.story
 			%br
+			-# %div
+			-# 	= myc.date_confessed 
+			%br
 			= link_to "Edit", edit_confession_path(myc)
 			-# - if confession.story.length <= 20
 			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-		%div
-			= link_to "See Comments", confession_path(myc)
+			%div
+				= link_to "See Comments", confession_path(myc)
+				-# %section
+				-# 	= render "comments/form"

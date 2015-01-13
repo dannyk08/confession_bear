@@ -23,8 +23,8 @@ class User
     end
   end
   
-  validates :username, presence: true, uniqueness: true,        case_sensitive: false, length: {within: 2..20}
-  validates :email,    presence: true, uniqueness: true,        case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :username, presence: true, uniqueness: true, case_sensitive: false, length: {within: 2..20}, on: :update
+  validates :email,    presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, on: :update
   validates :password, on: :create, length: {within: 4..12}, presence: true, confirmation: true
   # validates :password_confirmation, presence: true, on: :update, unless: lambda{|user| @user.password.blank? } 
     
@@ -33,5 +33,6 @@ class User
   mount_uploader :image, AvatarUploader
   
   has_many :confessions
+  has_many :comments, dependent: :destroy
 
 end

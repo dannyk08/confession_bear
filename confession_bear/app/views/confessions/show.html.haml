@@ -5,21 +5,16 @@
 		= @confession.title
 	%br
 	= @confession.story
-	%br
+	%br Confessed
+	-# = time_ago_in_words(confession.date_confessed)
 	-# unless @confession.story.length >= 20
 	= link_to "Edit", edit_confession_path
 	= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
 -# user can add a comment right on this text_area
-%section
-	= form_for [@confession, Comment.new] do |f|
-		%div
-			%p= f.text_area :reply, size: "50x5"
-			%p= f.submit "Add Comment"
+-# %section
+-# 	= render "comments/form"
+-# %section
+-# 	= render 'comments/comment'
+
 -# Comments go below
-- if @confession.comments.size > 0
-	%section
-		%h3 Comments
-		- for comments in @confession.comments
-			%h4= comment.header
-			%p= comment.reply
-= link_to 'Back', profile_path
+%button= link_to 'Back', profile_path

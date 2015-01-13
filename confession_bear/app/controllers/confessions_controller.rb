@@ -1,18 +1,25 @@
 class ConfessionsController < ApplicationController
-	before_filter :authorized?
-	before_filter	:logged_in?
+	before_action :authorized?
+	before_action	:logged_in?
 	def index
-		@confessions = Confession.all.order("id DESC")
+		@confessions = Confession.all.order("date_confessed DESC")
 		@confession = Confession.new
+		# @confession = Confession.edit
+		# @confession = Confession.update
+		# @confession = Confession.destroy
+		@comments = Comment.all.order("date_added DESC")
+		@comment = Comment.new
 	end
 
 	def create
 		@confession = @current_user.confessions.new(confession_params)
+		# @user.confession = current_user.confession
+			# trying to let the user see an edit and delete button with these function
 		# the top line does the same thing as the bottom ones
 			# @confession = Confession.new(confession_params)
 			# @confession.user = current_user 
 		 if @confession.save
-		 		redirect_to profile_path
+		 		redirect_to confession_path(@confession)
 		 	else
 		 		render :new
 		 	end
@@ -24,11 +31,14 @@ class ConfessionsController < ApplicationController
 
 	def edit
 		find_confession
+		# unless @confession.user == current_user
+		# 	redirect_to confessions_path
+		# end
 	end
 
 	def show
 		find_confession
-		@comments = Comment.all
+		@comments = Comment.all.order("date_added DESC")
 		@comment = Comment.new
 	end
 
@@ -54,12 +64,23 @@ class ConfessionsController < ApplicationController
 		redirect_to profile_path
 	end
 
+	# TO LIKE OR DISLIKE CONFESSIONS FROM OTHER USERS
+	# MAYBE I COULD USE A TOGGLE FUNCTION
+	# def like_confession
+	# 	@confession.upvote_by @user
+	# 	redirect_to confession_path(@confession)
+	# end
+
+	# def dislike_confession
+	# 	@confession.downvote_from @user
+	# 	redirect_to confession_path(@confession)
+	# end
 	private
 
 	def find_confession
 			@confession = Confession.find(params[:id])
 	end
-
+ 
 	def confession_params
 		params.require(:confession).permit(:title, :story, comment: :reply)
 	end

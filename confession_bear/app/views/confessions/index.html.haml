@@ -1,14 +1,23 @@
 %h1 Confessions Index Page
 %div
 	= render 'form'
-	%p OR
-	%button= link_to "Confess", new_confession_path
+	%br/
+	%button= link_to "Cluter Free?", new_confession_path
 
 %ul
-	- if @confessions.each != current_user.confessions
-		- @confessions.each do |confession|
-			%li
-				%strong= confession.title
+	- @confessions.each do |confession|
+		%li
+			%strong= confession.title
+			%br
+			-# = confession.date_confessed
+			= confession.story
+			- if confession.user == current_user
 				%br
-				= confession.story
+				= link_to "Edit", edit_confession_path(confession)
+				-# - if confession.story.length <= 20
+				= link_to "Delete", confession, method: :delete, data: {confirm: "Are you sure?"}
+				-# %section
+				-# = render 'comments/form'
+				-# %section
+				-# = render 'comments/comment'
 -# I need to add a link or box to comment on these confessions 

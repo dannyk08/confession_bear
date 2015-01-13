@@ -1,0 +1,7 @@
+%div
+	%div
+		%p
+			%strong= comment.reply
+			= time_ago_in_words(comment.date_added)
+	%p
+		= link_to "Delete Comment", [comment.confession, comment], method: :delete, data: { confirm: "Are you sure?"}
