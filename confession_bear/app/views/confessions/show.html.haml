@@ -7,11 +7,13 @@
 		= @confession.story
 		%br 
 		Confessed: #{@confession.date_confessed}
+		%div
 		= link_to "Edit", edit_confession_path
 		= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
 		-# user can add a comment right on this text_area
 		-# Comments go below
-	%button= link_to 'Back', profile_path
+	%div
+		%button= link_to 'Back', profile_path
 
 	%section
 		%div
@@ -20,3 +22,4 @@
 				= f.text_area :reply
 				= f.submit
 		= render 'comments/comment'
+		= render "comments/comment"

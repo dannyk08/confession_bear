@@ -10,15 +10,9 @@
 			%br
 			= myc.story
 			%br
+			%div Date Confessed: #{myc.date_confessed }
 			%div
-				= myc.date_confessed 
 			= link_to "Edit", edit_confession_path(myc)
 			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-			%section
-				%div
-					%div
-						- if myc.comments.size > 0
-							%div
-								= link_to "#{myc.comments.count} Comments", confession_path(myc)
-						-	else
-							%div 0 Comments
+			%div
+			= link_to "#{myc.comments.count} Comments", confession_path(myc)
