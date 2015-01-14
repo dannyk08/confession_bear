@@ -4,14 +4,14 @@ class Comment
   include ActiveModel::Validations
 
   field :reply,  type: String
+  field :username, type: String
 
-  validates :comment, presence: true
+  validates :reply, presence: true
 
-  belongs_to :confession#, inverse_of: :comments
-  belongs_to :user
-  # accepts_nested_attributes_for :user
+  embedded_in :confession
+  accepts_nested_attributes_for :confession
 
   def date_added
-      created_at.localtime.strftime("%-m/%-d/%Y | %l:%M %p")
+    created_at.localtime.strftime("%-m/%-d/%Y | %l:%M %p")
   end
 end

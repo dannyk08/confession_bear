@@ -16,7 +16,7 @@ class Confession
 
   belongs_to :user
   # deletes all the comments withing that confession so there are no "loose ends"
-  has_many :comments, dependent: :destroy
+  embeds_many :comments#, dependent: :destroy
 
   def date_confessed
       created_at.localtime.strftime("%A, %B %-d, %Y at %l:%M %p")

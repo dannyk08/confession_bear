@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :authorized?, only: [:edit, :show, :update, :destroy]
 
 	def index
+		@user = User.new
 	end
 
 	def create
@@ -28,8 +29,8 @@ class UsersController < ApplicationController
 	def show
 		@confessions = Confession.all.order("date_confessed DESC")
 		@confession = Confession.new
-		# @comments = Confession.comment.all
-		# @comment = Confession.comment.new
+		@comments = Comment.all
+		@comment = Comment.new
 		
 	end
 

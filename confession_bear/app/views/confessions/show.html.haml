@@ -5,16 +5,15 @@
 		= @confession.title
 	%br
 	= @confession.story
-	%br Confessed
-	-# = time_ago_in_words(confession.date_confessed)
-	-# unless @confession.story.length >= 20
+	%br 
+	Confessed: #{@confession.date_confessed}
 	= link_to "Edit", edit_confession_path
 	= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
--# user can add a comment right on this text_area
--# %section
--# 	= render "comments/form"
--# %section
--# 	= render 'comments/comment'
+	-# user can add a comment right on this text_area
+	-# %section
+	-# 	= render "comments/form"
+	%section
+		= render 'comments/comment'
 
 -# Comments go below
 %button= link_to 'Back', profile_path

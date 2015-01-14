@@ -33,6 +33,5 @@ class User
   mount_uploader :image, AvatarUploader
   
   has_many :confessions
-  has_many :comments, dependent: :destroy
 
 end

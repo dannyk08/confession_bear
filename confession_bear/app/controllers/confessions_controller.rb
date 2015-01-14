@@ -4,9 +4,6 @@ class ConfessionsController < ApplicationController
 	def index
 		@confessions = Confession.all.order("date_confessed DESC")
 		@confession = Confession.new
-		# @confession = Confession.edit
-		# @confession = Confession.update
-		# @confession = Confession.destroy
 		@comments = Comment.all.order("date_added DESC")
 		@comment = Comment.new
 	end

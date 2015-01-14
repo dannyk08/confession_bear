@@ -1,9 +1,9 @@
 %div
-	- if @confession.comments.size > 0
+	- if myc.comments.size > 0
 		%h3
-		= @confession.comments.count
+		= myc.comments.count
 		Comments
-= form_for([@confession, @confession.comments]) do |f|
+= form_for([myc, @comment]) do |f|
 	= f.label :reply
 	= f.text_area :reply
 	= f.submit
