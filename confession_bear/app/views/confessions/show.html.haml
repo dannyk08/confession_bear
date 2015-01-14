@@ -18,8 +18,7 @@
 	%section
 		%div
 			= form_for([@confession, @comment]) do |f|
-				= f.label :reply
+				= f.label "Have something to say?"
 				= f.text_area :reply
 				= f.submit
 		= render 'comments/comment'
-		= render "comments/comment"

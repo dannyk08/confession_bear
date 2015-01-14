@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 			redirect_to confession_path(@confession)
 			# redirect_to confession_path(comment.confession)
 		else
-			render :new
+			redirect_to confession_path(@confession)
 		end
 	end
 

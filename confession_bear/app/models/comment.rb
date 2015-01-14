@@ -6,7 +6,7 @@ class Comment
   field :reply,  type: String
   field :username, type: String
 
-  validates :reply, presence: true
+  validates :reply, presence: true, on: :create
 
   embedded_in :confession
   accepts_nested_attributes_for :confession
