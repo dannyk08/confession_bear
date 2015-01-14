@@ -1,0 +1,15 @@
+%header.top-header
+	%nav.navbar.navabar-default
+		.navbar-brand
+			%img#logo{ :alt => "confession bear logo", :src => "https://s3-us-west-1.amazonaws.com/confession-bear/the_bear_images/Confession+Bear.png"}/
+		.user-header
+			%ul.user-options
+			-if logged_in?
+				%li.nav-choices= link_to "#{current_user.username}", 			profile_path
+				%li.nav-choices= link_to "Confessions",  confessions_path
+				%li.nav-choices= link_to "Edit Profile", edit_profile_path(current_user.id)
+				%li.nav-choices= link_to "Log out", 			logout_path, method: :delete
+			-else
+				%li.nav-choices= link_to "Home", 		root_url
+				%li.nav-choices= link_to "Log In",		login_path
+				%li.nav-choices= link_to "Register", signup_path

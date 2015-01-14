@@ -1,24 +1,20 @@
-%h1 Confession Comments
-%section
-	%div
-		%strong
-			= @confession.title
-		%br
-		= @confession.story
-		%br 
-		Confessed: #{@confession.date_confessed}
-		%div
-		= link_to "Edit", edit_confession_path
-		= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
-		-# user can add a comment right on this text_area
-		-# Comments go below
-	%div
-		%button= link_to 'Back', profile_path
-
-	%section
-		%div
-			= form_for([@confession, @comment]) do |f|
-				= f.label "Have something to say?"
-				= f.text_area :reply
-				= f.submit
-		= render 'comments/comment'
+.row	
+	.col-md-6.col-md-offset-4
+		%h1 Confession Comments
+		%section
+			%div
+				%h3= @confession.title
+				%p= @confession.story
+				Confessed: #{@confession.date_confessed}
+				%div
+				= link_to "Edit", edit_confession_path
+				= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}
+			%div
+				%button= link_to 'Back', profile_path
+			.row
+				%div
+					= form_for([@confession, @comment]) do |f|
+						%h3= f.label "Have something to say?"
+						= f.text_area :reply, size: "50x5"
+						= f.submit
+				= render 'comments/comment'

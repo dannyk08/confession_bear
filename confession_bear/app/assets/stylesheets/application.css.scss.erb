@@ -17,12 +17,116 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+	background-image: url("http://subtlepatterns.com/patterns/swirl_pattern.png");
+	background-repeat: repeat-x repeat-y;
+}
+h1,h2,h3,h4{
+	font-family: "Raleway";
+}
+p{
+	font-family: "Josefin Sans";
+}
+header.top-header{
+	// margin: 0 0 150px 0;
+}
+header.top-header nav{
+	// background-color: gray;
+
+}
+div.user-header{
+	display: inline-block;
+	float: right;
+	padding-right: 25px;
+}
 #logo{
-	// max-width: 125px;
+	max-width: 125px;
 	// min-width: 50px;
 	// display: inline-block;
 }
-#navbar-letters{
-	font-size: 40px;
+ul{
+	list-style: none;
+	padding: 0px;
+}
+ul.user-options{
+	text-align: right;
+}
+li.nav-choices{
+	display: inline-block;
+	margin: 15px 10px 0px 10px;
+	padding: 0 10px;
+	height: 100%
+}
+li.nav-choices:hover{
+	// background-color: gray;
+}
+li.nav-choices > a{
+	font-size: 18px;
+	position: relative;
+
+}
+li.nav-choices > a:hover{
+	font-size: 18px;
 	// display: inline-block;
+}
+input{
+	border-radius: 5px;
+	margin: 5px 0;
+	min-height: 40px;
+	border: 1px solid black;
+	// width: 100%;
+}
+::-webkit-input-placeholder {
+   color: rgba(20,20,20,.7);;
+   padding-left: 10px;
+}
+textarea{
+	border-radius: 15px;
+}
+button{
+	border-radius: 5px;
+
+}
+.center-block{
+	margin-bottom: 20px;
+}
+
+#new-account{
+	width: 300px;
+	margin: 10px 0 0 20px;
+	background-color: white;
+	border: 1px solid black;
+	font-size: 20px;
+	color: rgba(20,20,20,.7);
+}
+#log-in{
+	width: 275px;
+	margin-left: 28px;
+	background-color: white;
+	border: 1px solid black;
+	font-size: 20px;
+	color: rgba(20,20,20,.7);
+
+}
+#sign-up{
+	font-size: 22px;
+	padding-left: 55px;
+}
+
+.back{
+	padding-top: 10px;
+	font-size: 20px;
+	color: rgba(20,20,20,.7);
+}
+
+input#user_image{
+	border: 1px solid white;
+}
+#upload-pic{
+	width: 300px;
+	margin: 10px 0 0 20px;
+	background-color: white;
+	border: 1px solid black;
+	font-size: 20px;
+	color: rgba(20,20,20,.7);
 }

@@ -1,63 +1,49 @@
-- if current_user === nil # will prevent logged in users from seeing this
-  %h1 Create new account
-  %ul
-    - @user.errors.full_messages.each do |e|
-      %li= e
-  = form_for @user do |u|
-    .field
-      = u.label :username
-      %br/
-      = u.text_field :username
-    .field
-      = u.label :email
-      %br/
-      = u.text_field :email
-    .field
-      = u.label :password
-      %br/
-      = u.password_field :password
-    .field
-      = u.label "Confirm password"
-      %br/
-      = u.password_field :password_confirmation
-    .actions
+.row
+  .col-md-4.col-md-offset-4
+    - if current_user === nil # will prevent logged in users from seeing this
+      .center-block
+        %h1 Create new account
+      %ul
+        - @user.errors.full_messages.each do |e|
+          %li= e
+      = form_for @user do |u|
+        .glyphicon.glyphicon-user
+          = u.text_field :username, :placeholder => "username"
+        .glyphicon.glyphicon-envelope
+          = u.text_field :email, :placeholder => "email@bear.com"
+        .glyphicon.glyphicon-lock
+          = u.password_field :password, :placeholder => "password"
+        .glyphicon.glyphicon-magnet
+          = u.password_field :password_confirmation, :placeholder => "confirm password"
+        .actions #{u.submit "Submit", :id => "new-account"}
+  - if logged_in?
+    %h3 Edit username
+    %ul
+      - current_user.errors.full_messages.each do |e|
+        %li= e
+    = form_for current_user do |u|
+      .glyphicon.glyphicon-user
+        = u.text_field :username
       = u.submit "Submit"
-- if logged_in?
-  %h3 Edit username
-  %ul
-    - current_user.errors.full_messages.each do |e|
-      %li= e
-  = form_for current_user do |u|
-    .field
-      = u.label :username
-      %br/
-      = u.text_field :username
-    = u.submit "Submit"
-  %h3 Update email
-  %ul
-    -# current_user.errors.full_messages.each do |e|
-      -#%li= e
-  = form_for current_user do |u|
-    .field
-      = u.label :email
-      %br/
-      = u.text_field :email
-    = u.submit "Submit"
-  %h3 Update Password
-  %ul
-    -# current_user.errors.full_messages.each do |e|
-      -#%li= e
-  = form_for current_user do |u|
-    -#.field
-      -#= u.label "Current Password"
-      -#= u.password_field_tag :current_password, params[:current_password] 
-    .field
-      = u.label :password
-      %br/
-      = u.password_field :password
-    .field
-      = u.label :password_confirmation
-      %br/
-      = u.password_field :password_confirmation
-    .actions
+    %h3 Update email
+    %ul
+      -# current_user.errors.full_messages.each do |e|
+        -#%li= e
+    = form_for current_user do |u|
+      .glyphicon.glyphicon-envelope
+        = u.text_field :email
+      = u.submit "Submit"
+    %h3 Update Password
+    %ul
+      -# current_user.errors.full_messages.each do |e|
+        -#%li= e
+    = form_for current_user do |u|
+      -#.field
+        -#= u.label "Current Password"
+        -#= u.password_field_tag :current_password, params[:current_password] 
+      .glyphicon.glyphicon-lock
+        = u.password_field :password, :placeholder => "password"
+      %br
+      .glyphicon.glyphicon-magnet
+        = u.password_field :password_confirmation, :placeholder => "confirm password"
       = u.submit "Submit"

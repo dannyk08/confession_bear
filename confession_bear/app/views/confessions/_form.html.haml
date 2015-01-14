@@ -1,19 +1,18 @@
-= form_for(@confession) do |c|
-  - if @confession.errors.any?
-    #error_explanation
-      %h2
-      = pluralize(@confession.errors.count, "error")
-      prohibited this confession from being saved:
-      / %ul
-      / - @confessions.errors.full_messages.each do |message|
-      /   %li= message
-  .field
-    = c.label :title 
-    %br/
-    = c.text_field :title
-  .field
-    = c.label :story
-    %br/
-    = c.text_area :story, size: "50x5"
-  .actions
-    = c.submit "Submit"
+.row
+  .col-md-4.col-md-offset-4
+    = form_for(@confession) do |myc|
+      - if @confession.errors.any?
+        #error_explanation
+          %h2
+          = pluralize(@confession.errors.count, "error")
+          prohibited this confession from being saved:
+      .field
+        = myc.label :title 
+        %br/
+        = myc.text_field :title
+      .field
+        = myc.label :story
+        %br/
+        = myc.text_area :story, size: "50x5"
+      .actions
+        = myc.submit "Submit"

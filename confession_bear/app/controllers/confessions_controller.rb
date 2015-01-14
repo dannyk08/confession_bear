@@ -6,6 +6,7 @@ class ConfessionsController < ApplicationController
 		@confession = Confession.new
 		@comments = Comment.all.order("date_added DESC")
 		@comment = Comment.new
+		# @comment = Comment.create 
 	end
 
 	def create
