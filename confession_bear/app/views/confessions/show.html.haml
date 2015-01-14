@@ -1,11 +1,11 @@
 .row	
-	.col-md-6.col-md-offset-4
+	.col-md-5.col-md-offset-4
 		%h1 Confession Comments
 		%section
-			%div
+			%div.confession-row
 				%h3= @confession.title
 				%p= @confession.story
-				Confessed: #{@confession.date_confessed}
+				%strong Confessed: #{@confession.date_confessed}
 				%div
 				= link_to "Edit", edit_confession_path
 				= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}

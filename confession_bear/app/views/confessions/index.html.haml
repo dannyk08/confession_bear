@@ -2,7 +2,7 @@
 	%section
 		= render "confessions/form"
 .row
-	.col-md-6.col-md-offset-4
+	.col-md-5.col-md-offset-4
 		%div
 			%button
 				= link_to "Clutter Free?", new_confession_path
@@ -15,10 +15,10 @@
 			%div
 				%ul
 					- @confessions.each do |myc|
-						%li
+						%li.confession-row
 							%h3= myc.title
 							%p= myc.story
-							Date Confessed: #{myc.date_confessed}
+							%strong Date Confessed: #{myc.date_confessed}
 							%div
 							= link_to "#{myc.comments.count} Comments", confession_path(myc)
 							- if myc.user === current_user

@@ -4,9 +4,8 @@
 			%p
 				%ul
 					- @confession.comments.each do |comment|
-						%li
-							=comment.reply
-							%br
+						%li.confession-row#comments
+							%p= comment.reply
 							Comment by: 
 							%strong #{comment.username}, 
 							#{time_ago_in_words(comment.created_at)}

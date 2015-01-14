@@ -1,15 +1,15 @@
 .row
-	.col-md-4.col-md-offset-4
+	.col-md-5.col-md-offset-4
 		#user-form
 			= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
 		- if current_user.confessions.count === 0
 			%p You need to confess. The world depends on it!
 = render partial: 'confessions/form'
 .row
-	.col-md-4.col-md-offset-4
+	.col-md-5.col-md-offset-4
 		%ul 
 			- current_user.confessions.each do |myc|
-				%li
+				%li.confession-row
 					%h3= myc.title
 					%p= myc.story
 					%div Date Confessed: #{myc.date_confessed }
