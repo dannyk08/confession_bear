@@ -27,16 +27,14 @@ class ConfessionsController < ApplicationController
 	end
 
 	def edit
-		find_confession
-		# unless @confession.user == current_user
-		# 	redirect_to confessions_path
-		# end
+		find_confession		
 	end
 
 	def show
 		find_confession
 		@comments = Comment.all.order("date_added DESC")
 		@comment = Comment.new
+		@comment = Comment.create
 	end
 
 	# I gotta fix this code so users can't edit stuff after 30 characters

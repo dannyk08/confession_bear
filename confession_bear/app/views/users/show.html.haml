@@ -10,13 +10,10 @@
 			%br
 			= myc.story
 			%br
-			-# %div
-			-# 	= myc.date_confessed 
+			%div
+				= myc.date_confessed 
 			%br
 			= link_to "Edit", edit_confession_path(myc)
-			-# - if confession.story.length <= 20
 			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-			%div
-				= link_to "See Comments", confession_path(myc)
-				%section
-					= render :partial => "comments/form", :locals => { :myc => myc }
+	%section
+		= render "comments/form"

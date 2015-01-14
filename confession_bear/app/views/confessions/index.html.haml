@@ -2,7 +2,7 @@
 %div
 	-# = render 'form'
 	%br/
-	%button= link_to "Cluter Free?", new_confession_path
+	%button= link_to "Clutter Free?", new_confession_path
 
 %ul
 	- @confessions.each do |myc|
@@ -16,8 +16,7 @@
 				= link_to "Edit", edit_confession_path(myc)
 				-# - if confession.story.length <= 20
 				= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-				%div
-				= link_to "See Comments", confession_path(myc)
-				%section
-					= render :partial => "comments/form", :locals => { :myc => myc }
+			
+		%section
+			= render :partial => "comments/form", :locals => { :myc => myc }
 -# I need to add a link or box to comment on these confessions 

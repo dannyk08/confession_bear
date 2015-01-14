@@ -1,5 +1,4 @@
 %h1 Edit Profile
-%h3= current_user.username
 #user-form
 	= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
 	%h4 Upload Image

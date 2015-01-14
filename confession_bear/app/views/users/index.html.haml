@@ -1,5 +1,5 @@
 %h1 Confession Bear Main Index Page
 %div
 	%div
-	= current_user.confessions.inspect
+	- unless logged_in?
 		= render 'form'
