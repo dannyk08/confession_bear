@@ -1,13 +1,14 @@
-%div
+%section
 	%div
-		- if myc.comments.size > 0
-			%div
-				= link_to "#{myc.comments.count} Comments", confession_path(myc)
-		-	else
-			%div 0 Comments
+		%div
+			- if myc.comments.size > 0
+				%div
+					= link_to "#{myc.comments.count} Comments", confession_path(myc)
+			-	else
+				%div 0 Comments
 
-%div
-	= form_for([myc, @comment]) do |f|
-		= f.label :reply
-		= f.text_area :reply
-		= f.submit
+	%div
+		= form_for([myc, @comment]) do |f|
+			= f.label :reply
+			= f.text_area :reply
+			= f.submit

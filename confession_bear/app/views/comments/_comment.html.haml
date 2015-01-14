@@ -1,20 +1,19 @@
-%div
+%section
 	%div
-		%p
-			%ul
-				- @confession.comments.each do |comment|
-					%li
-						=comment.reply
-						%br
-						Comment by: 
-						%strong #{comment.username}, 
-						#{time_ago_in_words(comment.created_at)}
-						-# - if @confession.comments.username == current_user
-						-# 	= linkt_to "Delete Comment", @confession.comment, method: :delete, data: {confirm: "Are you sure?"}
-						
-			-# = @confession.comments
-			-# <%= @post.comments %>
+		%div
+			%p
+				%ul
+					- @confession.comments.each do |comment|
+						%li
+							=comment.reply
+							%br
+							Comment by: 
+							%strong #{comment.username}, 
+							#{time_ago_in_words(comment.created_at)}
+							
+				-# = @confession.comments
+				-# <%= @post.comments %>
+					
 				
-			
-	%p
-		-# = link_to "Delete Comment", [@], method: :delete, data: { confirm: "Are you sure?"}
+		%p
+			-# = link_to "Delete Comment", [@], method: :delete, data: { confirm: "Are you sure?"}

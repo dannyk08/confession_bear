@@ -16,7 +16,6 @@
 				= link_to "Edit", edit_confession_path(myc)
 				-# - if confession.story.length <= 20
 				= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-			
-		%section
+
 			= render :partial => "comments/form", :locals => { :myc => myc }
 -# I need to add a link or box to comment on these confessions 

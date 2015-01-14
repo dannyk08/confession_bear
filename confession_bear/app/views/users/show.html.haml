@@ -12,8 +12,13 @@
 			%br
 			%div
 				= myc.date_confessed 
-			%br
 			= link_to "Edit", edit_confession_path(myc)
 			= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-	%section
-		= render "comments/form"
+			%section
+				%div
+					%div
+						- if myc.comments.size > 0
+							%div
+								= link_to "#{myc.comments.count} Comments", confession_path(myc)
+						-	else
+							%div 0 Comments
