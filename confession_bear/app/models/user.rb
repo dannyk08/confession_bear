@@ -22,6 +22,16 @@ class User
       return false
     end
   end
+
+  # attr_reader :current_password
+  # def current_password=(unencrypted_password)
+  #   unless unencrypted_password.empty?
+  #     @current_password = unencrypted_password
+  #     self.
+      
+  #   end
+
+  # end
   
   validates :username, presence: true, uniqueness: true, case_sensitive: false, length: {within: 2..20}, on: :update
   validates :email,    presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, on: :update

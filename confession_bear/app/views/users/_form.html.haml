@@ -33,17 +33,27 @@
       .glyphicon.glyphicon-envelope
         = u.text_field :email
       = u.submit "Submit"
-    %h3 Update Password
-    %ul
-      -# current_user.errors.full_messages.each do |e|
-        -#%li= e
-    = form_for current_user do |u|
-      -#.field
-        -#= u.label "Current Password"
-        -#= u.password_field_tag :current_password, params[:current_password] 
-      .glyphicon.glyphicon-lock
-        = u.password_field :password, :placeholder => "password"
-      %br
-      .glyphicon.glyphicon-magnet
-        = u.password_field :password_confirmation, :placeholder => "confirm password"
-      = u.submit "Submit"
+    
+    
+    %button.btn.btn-primary{"data-target" => ".bs-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
+      %p Update Password
+    .modal.fade.bs-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog.modal-sm
+        .modal-content
+          %ul
+            -# current_user.errors.full_messages.each do |e|
+              -#%li= e
+          = form_for current_user do |u|
+            -#.field
+              -#= u.label "Current Password"
+              -#= u.password_field_tag :current_password, params[:current_password] 
+            .glyphicon.glyphicon-lock
+              = u.password_field :password, :placeholder => "password"
+            %br
+            .glyphicon.glyphicon-magnet
+              = u.password_field :password_confirmation, :placeholder => "confirm password"
+            = u.submit "Submit"
+    
+
+
+            

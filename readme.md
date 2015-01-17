@@ -1,7 +1,10 @@
-Work is still in progress... Actual app files are inside the confession_bear directory
+##Work is still in progress... 
+Actual app files are inside the confession_bear directory
 
+##About
 This is the confession bear site for people who have something to say in the safety of anonymity. A user can log in safely, make a confession of something they're embarrased about and have never had the courage to tell anyone.
 
+###Purpose
 With this app a user can safely write down a diary of all their secrets. Be it intimate, embarrasing, funny, harsh, whatever the nature of the confession, a user will be able to confess it all. Other users will be able to comment on these confessions without ever knowing who made that confession.
 	The only catch is that the user making the comment will be have their username displayed
 	As the user receives comments from their fellow confession bears, their comment count will increase and apply those "points into the account"
