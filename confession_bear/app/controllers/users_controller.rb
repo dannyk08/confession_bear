@@ -48,9 +48,10 @@ class UsersController < ApplicationController
 
 	def destroy
 		find_user
-		@user = current_user.destroy
 		# destroy all the user's comments in all the confessions
-		@comments = current_user.comments.destroy
+		@comments = current_user.comments.destroy_all
+
+		@user = current_user.destroy
 		# if we delete a user.. then a session must be deleted as well?
 		session.delete(:user_id)
 		redirect_to root_path

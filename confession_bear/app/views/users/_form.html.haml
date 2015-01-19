@@ -1,59 +1,55 @@
-.row.confession-row.signup
-  .col-md-5.col-md-offset-4
-    - if current_user === nil # will prevent logged in users from seeing this
-      .center-block
-        %h1 Create new account
-      %ul
-        - @user.errors.full_messages.each do |e|
-          %li= e
-      = form_for @user do |u|
-        .glyphicon.glyphicon-user
-          = u.text_field :username, :placeholder => "username"
-        .glyphicon.glyphicon-envelope
-          = u.text_field :email, :placeholder => "email@bear.com"
-        .glyphicon.glyphicon-lock
-          = u.password_field :password, :placeholder => "password"
-        .glyphicon.glyphicon-magnet
-          = u.password_field :password_confirmation, :placeholder => "confirm password"
-        .actions #{u.submit "Submit", :id => "new-account"}
+%div
+  -# unregisterd users will see this signup form
+  - if current_user == nil
+    .container.col-md-3.col-md-offset-4
+      = form_for @user, :html => {:class => "form-signin"} do |u|
+        %h2.form-signin-heading Create new account
+        %ul 
+          - @user.errors.full_messages.each do |e|
+            %li= e
+        %label.sr-only{:for => "inputUsername"} Username
+        = u.text_field :username, :placeholder => "Username", :class => "form-control", :id => "inputUser"
+        %label.sr-only{:for => "inputEmail"} Email address
+        = u.text_field :email, :placeholder => "email@example.com",:type => "email", :class => "form-control", :id => "inputEmail"
+        %label.sr-only{:for => "inputPassword"} Password
+        = u.password_field :password, :placeholder => " password ", :class => "form-control", :id => "inputPassword"
+        %label.sr-only{:for => "inputConfirmPassword"} Confirm Password
+        = u.password_field :password, :placeholder => " password ", :class => "form-control", :id => "inputConfirmPassword"
+        = u.submit "Sign In", :class => "btn btn-md btn-primary btn-block"
+    
+  -# only logged in users will be able to see this form
   - if logged_in?
-    %h3 Edit username
-    %ul
-      - current_user.errors.full_messages.each do |e|
-        %li= e
-    = form_for current_user do |u|
-      .glyphicon.glyphicon-user
-        = u.text_field :username
-      = u.submit "Submit"
-    %h3 Update email
-    %ul
-      -# current_user.errors.full_messages.each do |e|
-        -#%li= e
-    = form_for current_user do |u|
-      .glyphicon.glyphicon-envelope
-        = u.text_field :email
-      = u.submit "Submit"
-    
-    
-    %button.btn.btn-primary{"data-target" => ".bs-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
-      %p Update Password
-    .modal.fade.bs-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-dialog.modal-sm
-        .modal-content
-          %ul
-            -# current_user.errors.full_messages.each do |e|
-              -#%li= e
-          = form_for current_user do |u|
-            -#.field
-              -#= u.label "Current Password"
-              -#= u.password_field_tag :current_password, params[:current_password] 
-            .glyphicon.glyphicon-lock
-              = u.password_field :password, :placeholder => "password"
-            %br
-            .glyphicon.glyphicon-magnet
-              = u.password_field :password_confirmation, :placeholder => "confirm password"
-            = u.submit "Submit"
-    
+    .container.col-md-3.col-md-offset-1
+      %h2.form-signin-heading Edit Profile
+      -# %h4 Upload Image
+      = form_for(current_user, :html => {:multipart => true}) do |u|
+        = u.file_field :image
+        = u.submit "Update", :class => "btn btn-block btn-primary btn-md"
 
+      -# edits username
+      = form_for current_user, :html => {:class => "form-signin"} do |u|
+        %label.sr-only{:for => "inputUsername"} Username
+        = u.text_field :username, :placeholder => "Username", :class => "form-control", :id => "inputUser"
+        = u.submit "Update username", :class => "btn btn-md btn-primary btn-block"
 
-            
+      -# edits user email
+      = form_for current_user, :html => {:class => "form-signin"} do |u|
+        %label.sr-only{:for => "inputEmail"} Email address
+        = u.text_field :email, :placeholder => "email@example.com",:type => "email", :class => "form-control", :id => "inputEmail"
+        = u.submit "Update email", :class => "btn btn-md btn-primary btn-block"
+
+      -# opens up a modal for the user to update their password
+      %button.btn.btn-danger.btn-block{"data-target" => ".bs-example-modal-md", "data-toggle" => "modal", :type => "button"} Update Password
+      .modal.fade.bs-example-modal-md{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-sm
+          .modal-content
+            = form_for current_user, :html => {:class => "form-signin"} do |u|
+              %label.sr-only{:for => "inputPassword"} Password
+              = u.password_field :password, :placeholder => " password ", :class => "form-control", :id => "inputPassword"
+              %label.sr-only{:for => "inputConfirmPassword"} Confirm Password
+              = u.password_field :password_confirmation, :placeholder => " confirm password ", :class => "form-control", :id => "inputConfirmPassword"
+              = u.submit "Update Password", :class => "btn btn-md btn-primary btn-block"
+      
+      -# this is form_for independent..
+      %h4
+        = link_to "Delete Account", current_user, method: :delete, alert: "Are you sure you want to delete your account?", :class => "btn btn-md btn-danger btn-block"
