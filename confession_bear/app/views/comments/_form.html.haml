@@ -1,13 +1,11 @@
-%section
-	%div
+.section
+	- if myc.comments.size > 0
 		%div
-			- if myc.comments.size > 0
-				%div
-					= link_to "#{myc.comments.count} Comments", confession_path(myc)
-			-	else
-				%div 0 Comments
+			= link_to "#{myc.comments.count} Comments", confession_path(myc)
+	-	else
+		= link_to "0 Comments", @confession_path
 
-	%div
+	.comments-padding
 		= form_for([myc, @comment]) do |f|
 			= f.text_area :reply
 			= f.submit

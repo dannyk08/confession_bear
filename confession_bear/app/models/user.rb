@@ -36,10 +36,21 @@ class User
   validates :username, presence: true, uniqueness: true, case_sensitive: false, length: {within: 2..20}, on: :update
   validates :email,    presence: true, uniqueness: true, case_sensitive: false, length: { maximum: 50 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, on: :update
   validates :password, length: {within: 4..12}, presence: true, confirmation: true, on: [:create, :update]
-  
+  # validates :image, presence: true
+
   # carrierwave stuff
   mount_uploader :image, AvatarUploader
   
   has_many :confessions
+
+  def comments 
+    # self.username
+    # @comments = Comment.where(username: self.username)
+
+    # micah helped with this portion of the function to find comments
+    # confessions.first.comments.where(:username => "Micah").to_a <-- original
+
+    # @comments = confessions.first.comments.where(:username => self.username) <-- Daniel's attempt
+  end
 
 end

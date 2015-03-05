@@ -1,7 +1,6 @@
-.row
-	.col-md-offset-4
-		%h1 New Confession
-=render 'form'
-.row
-	.col-md-offset-4
-		=link_to "Back", confessions_path
+.swirly-pattern
+  =render 'form'
+  
+  .confession-options
+    .text-right
+      =link_to "Back", confessions_path, :class => "btn btn-primary" 

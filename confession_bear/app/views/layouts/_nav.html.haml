@@ -25,6 +25,8 @@
                 %a{:href => "#"} Bugs? Comments?
               %li.divider
               %li= link_to "Log out", logout_path, method: :delete 
+          - if current_user.image.url.present?
+            %li= image_tag current_user.image.url(:thumb), :class => "thumb-pic"
 
         - else
           %li= link_to "Home", root_url

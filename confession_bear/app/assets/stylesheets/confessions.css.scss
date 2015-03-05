@@ -4,3 +4,25 @@
 
 // fonts for the confesions = circular
 // http://glyphicons.bootstrapcheatsheets.com/ to grab all the glyphicons
+
+
+.comments-section{
+    padding: 20px;
+}
+
+.comments-padding{
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.confession-options{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.confession-options > .text-right{
+    padding-right: 60px;
+}

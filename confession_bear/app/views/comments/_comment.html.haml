@@ -1,18 +1,8 @@
-%section
-	%div
-		%div
-			%p
-				%ul
-					- @confession.comments.each do |comment|
-						%li.confession-row#comments
-							%p= comment.reply
-							Comment by: 
-							%strong #{comment.username}, 
-							#{time_ago_in_words(comment.created_at)}
-							
-				-# = @confession.comments
-				-# <%= @post.comments %>
+.comments-section
+	%ul
+		- @confession.comments.each do |comment|
+			.comments-padding
+				%li
+					%p.confession-text= comment.reply
+					%p.confession-date Comment by: #{comment.username}, #{time_ago_in_words(comment.created_at)} ago
 					
-				
-		%p
-			-# = link_to "Delete Comment", [@], method: :delete, data: { confirm: "Are you sure?"}

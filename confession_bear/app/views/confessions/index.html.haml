@@ -1,27 +1,22 @@
-%div
-	%section
-		= render "confessions/form"
-.row
-	.col-md-5.col-md-offset-4
-		%div
-			%button
-				= link_to "Clutter Free?", new_confession_path
-			%button
-				= link_to "Back", profile_path
+.swirly-pattern
+	= render "confessions/form"
 
-		%section
-			%div
-				%h1 These are their confessions...
-			%div
-				%ul
-					- @confessions.each do |myc|
-						%li.confession-row
-							%h3= myc.title
-							%p= myc.story
-							%strong Date Confessed: #{myc.date_confessed}
-							%div
-							= link_to "#{myc.comments.count} Comments", confession_path(myc)
-							- if myc.user === current_user
-								%div
-									= link_to "Edit", edit_confession_path(myc)
-									= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
+	.confession-options
+		.text-right
+			= link_to "Clutter Free?", new_confession_path, :class => "btn btn-success"
+			= link_to "Back", profile_path, :class => "btn btn-primary"
+
+	.container.confession-field-center
+		.confession-field-padding
+			%h1.text-center.underlined-text These are their confessions...
+			%ul
+				- @confessions.each do |myc|
+					%li.single-confession
+						%h2.confession-title #{myc.title}
+						%p.confession-date Date Confessed: #{myc.date_confessed}
+						%p.confession-text= myc.story
+						%div
+						= link_to "#{myc.comments.count} Comments", confession_path(myc), :class => "btn btn-default btn-sm btn-success"
+						- if myc.user === current_user
+							= link_to "Edit", edit_confession_path(myc), :class => "btn btn-default btn-sm btn-info"
+							= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-default btn-sm btn-danger"

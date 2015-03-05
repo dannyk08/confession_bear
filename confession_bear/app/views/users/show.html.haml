@@ -1,20 +1,23 @@
-.row
-	.col-md-5.col-md-offset-4
-		#user-form
-			= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
-		- if current_user.confessions.count === 0
-			%p You need to confess. The world depends on it!
-= render partial: 'confessions/form'
-.row
-	.col-md-5.col-md-offset-4
-		%ul 
-			- current_user.confessions.each do |myc|
-				%li.confession-row
-					%h3= myc.title
-					%p= myc.story
-					%div Date Confessed: #{myc.date_confessed }
-					%div
-					= link_to "Edit", edit_confession_path(myc)
-					= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}
-					%div
-					= link_to "#{myc.comments.count} Comments", confession_path(myc)
+.swirly-pattern
+	.row
+		.col-md-5.col-md-offset-4
+			#user-form
+				= image_tag current_user.image.url(:thumb) if current_user.image.url.present?
+			- if current_user.confessions.count === 0
+				%p You need to confess. The world depends on it!
+
+	= render partial: 'confessions/form'
+
+	.row
+		.container.confession-field-center
+			.confession-field-padding
+				%ul 
+					- current_user.confessions.each do |myc|
+						%li.single-confession
+							%h2.confession-title #{myc.title}
+							%p.confession-date Date Confessed: #{myc.date_confessed}
+							%p.confession-text= myc.story
+							%div.button-group
+								= link_to "#{myc.comments.count} Comments", confession_path(myc), :class => "btn btn-default btn-sm btn-success	"
+								= link_to "Edit", edit_confession_path(myc), :class => "btn btn-default btn-sm btn-info"
+								= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-default btn-sm btn-danger"
