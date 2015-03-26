@@ -1,0 +1,16 @@
+.row
+  .container.confession-field-center
+    .confession-field-padding
+      = form_for(@confession) do |myc|
+        - if @confession.errors.any?
+          #error_explanation
+            %h2
+            = pluralize(@confession.errors.count, "error")
+            prohibited this confession from being saved:
+        
+        .form-group
+          = myc.text_field :title , :class => "form-control", :placeholder => "Confession's title..."
+        .form-group
+          = myc.text_area :story, :class => "form-control", :placeholder => "One time I... my friends..." , :rows => "4"
+        .submit-actions
+          = myc.submit "Submit", :class => "btn btn-success btn-block"

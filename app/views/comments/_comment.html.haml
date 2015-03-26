@@ -1,0 +1,8 @@
+.comments-section
+	%ul
+		- @confession.comments.each do |comment|
+			.comments-padding
+				%li
+					%p.confession-text= comment.reply
+					%p.confession-date Comment by: #{comment.username}, #{time_ago_in_words(comment.created_at)} ago
+					

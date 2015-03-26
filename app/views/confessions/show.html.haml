@@ -1,0 +1,24 @@
+.swirly-pattern
+	.row	
+		.container.confession-field-center
+			.confession-field-padding
+				%section
+					%div
+						%h3= @confession.title
+						%p= @confession.story
+						%p.confession-date Date Confessed: #{@confession.date_confessed}
+						
+						.button-group
+							- if @confession.user_id === current_user._id
+								= link_to "Edit", edit_confession_path, :class => "btn btn-default btn-sm btn-info"
+								= link_to "Delete", @confession, method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-default btn-sm btn-danger"
+							= link_to 'Back', profile_path, :class => "btn btn-default btn-sm btn-primary"
+						
+						-# Comment submit
+						= form_for([@confession, @comment]) do |f|
+							%h3= f.label "Got something to say?"
+							.form-group
+								= f.text_area :reply, size: "50x5", :class => "form-control"
+							.submit-actions
+								= f.submit "Submit", :class => "btn btn-success btn-block"
+					= render 'comments/comment'

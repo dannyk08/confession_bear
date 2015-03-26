@@ -1,0 +1,22 @@
+.swirly-pattern
+	= render "confessions/form"
+
+	.confession-options
+		.text-right
+			= link_to "Clutter Free?", new_confession_path, :class => "btn btn-success"
+			= link_to "Back", profile_path, :class => "btn btn-primary"
+
+	.container.confession-field-center
+		.confession-field-padding
+			%h1.text-center.underlined-text These are their confessions...
+			%ul
+				- @confessions.each do |myc|
+					%li.single-confession
+						%h2.confession-title #{myc.title}
+						%p.confession-date Date Confessed: #{myc.date_confessed}
+						%p.confession-text= myc.story
+						%div
+						= link_to "#{myc.comments.count} Comments", confession_path(myc), :class => "btn btn-default btn-sm btn-success"
+						- if myc.user === current_user
+							= link_to "Edit", edit_confession_path(myc), :class => "btn btn-default btn-sm btn-info"
+							= link_to "Delete", myc, method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-default btn-sm btn-danger"

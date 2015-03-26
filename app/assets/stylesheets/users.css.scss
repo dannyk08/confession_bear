@@ -1,0 +1,102 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// User's Index.html 
+#back-button{
+    margin-top: 10px;
+}
+
+#main-content{
+    margin-top: 380px;
+    text-align: right;
+    padding: 0 20px;
+}
+
+.light-paper-pattern{
+    background-image: url("http://subtlepatterns.com/patterns/lightpaperfibers.png)");
+}
+.max-width-container{
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 35px 0;
+}
+.text-center{
+    text-align: center;
+}
+.fa.fa-font-size{
+    font-size: 50px;
+}
+.fa.fa-meh-o.fa-font-size{
+    color: rgb(77, 116, 100);
+}
+.fa.fa-check.fa-font-size{
+    color: rgb(53, 153, 12);
+    // color: rgb(45, 205, 138);
+}
+.fa.fa-smile-o.fa-font-size{
+    color: rgb(73, 132, 190);
+    // color: rgb(255, 140, 0);
+}
+
+.btn-spacing{
+    margin: 10px 0;
+    padding: 5px;
+}
+#call-action-btn{
+    margin-top: 20px;
+}
+
+//User's show-page
+
+.confession-field-center{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 7px;
+}
+
+.button-group{
+    margin: 10px 0;
+}
+
+.confession-title{
+    // font-size: 40px;
+}
+.confession-text{
+    font-size: 20px;
+}
+.confession-date{
+    font-size: 14px;
+}
+
+.confession-field-padding{
+    margin: 10px 0;
+    padding: 40px;
+    transition-duration: .8s;        
+
+    &:hover{
+        background-color: rgba(255,255,255,.8);
+        border-radius: 5px;
+        box-shadow: -1px 0 5px gray,
+                    1px 0 5px gray;
+        transition-duration: .8s;        
+    }
+}
+.single-confession{
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid gray;
+}
+
+// User's edit page
+button.btn.btn-danger.btn-block{
+    margin-top: 10px;
+}
+
+.modal-content{
+    padding: 20px 10px;
+    margin-top: 250px;
+}
+
+.form-group.zero-margin{
+    margin: 0;
+}

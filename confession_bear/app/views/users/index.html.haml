@@ -1,0 +1,33 @@
+.row.login-height
+  .container#main-content
+    %h1 Confession Bear Cares
+    %p At Confession Bear, your stories...
+    matter. 
+
+.row
+  .container.max-width-container.text-center
+    %h2 Why Confession Bear Works
+    .col-xs-4.col-sm-4.col-md-4.col-lg-4
+      %span.fa.fa-meh-o.fa-font-size
+      %h2 Secrets Hurt
+      %p Every second, someone in this world is hurting because of something they can't say...
+
+    .col-xs-4.col-sm-4.col-md-4.col-lg-4
+      %span.fa.fa-check.fa-font-size
+      %h2 Telling Helps 
+      %p Confession Bear is here to help... Tell us all your secrets and no-one will know it was you
+      
+    .col-xs-4.col-sm-4.col-md-4.col-lg-4
+      %span.fa.fa-smile-o.fa-font-size
+      %h2 Feel Well
+      %p Why not tell a friend? Why tell us? What's in it for you? Sign up and find out!
+
+- if !logged_in?
+  .row.light-paper-pattern
+    .container.max-width-container.text-center
+      %h2 Sign Up...
+      %h2 Or log in..
+      that's fine too
+      #call-action-btn
+        = link_to "Sign Up", signup_path, :class => "btn btn-primary btn-spacing btn-lg"
+        = link_to "Login In", login_path, :class => "btn btn-success btn-spacing btn-lg"

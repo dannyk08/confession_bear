@@ -1,0 +1,9 @@
+.swirly-pattern
+  .col-md-3
+    .center-block
+      = image_tag current_user.image.url(:thumb) if current_user.image.url.present?
+
+  = render 'form'
+
+  .back-btn
+    = link_to "Back", user_path, :class => "btn btn-block btn-primary"

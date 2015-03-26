@@ -1,0 +1,12 @@
+.row.login-height
+  .container.login-background
+    .login-box
+      %h2.center-text Account Login
+      = form_for :login do |l|
+        .form-group
+          = l.text_field :email, :placeholder => "confession@bear.email", :class => "form-control"
+        .form-group
+          = l.password_field :password, :placeholder => "secret password", :class => "form-control"
+        = l.submit "Log In", :class => "btn btn-lg btn-success btn-block"
+      %div
+        = link_to " Need Account?", signup_path, :id => "sign-up"
